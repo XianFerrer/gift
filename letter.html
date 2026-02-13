@@ -1,0 +1,191 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Birthday Anniversary Card</title>
+    <style>
+      :root {
+        --soft-pink: #ffb7c5;
+        --hot-pink: #ff4d94;
+        --border-grey: #ddd;
+      }
+
+      body {
+        margin: 0;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: linear-gradient(to bottom, #fbc2eb 0%, #a6c1ee 100%);
+        font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        overflow: hidden;
+      }
+
+      /* Back Button */
+      .back-btn {
+        position: absolute;
+        top: 20px;
+        left: 20px;
+        text-decoration: none;
+        color: white;
+        font-weight: bold;
+        background: rgba(255, 255, 255, 0.3);
+        padding: 10px 20px;
+        border-radius: 25px;
+        backdrop-filter: blur(5px);
+        transition: 0.3s;
+        z-index: 100;
+      }
+
+      .back-btn:hover {
+        background: white;
+        color: var(--hot-pink);
+      }
+
+      /* Main Card */
+      .card {
+        background: white;
+        width: 850px;
+        height: 450px;
+        border: 15px solid rgba(255, 255, 255, 0.5);
+        border-radius: 10px;
+        display: flex;
+        position: relative;
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+      }
+
+      /* Left Side (Photo) */
+      .left-panel {
+        flex: 1;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+      }
+
+      .polaroid-frame {
+        background: white;
+        padding: 15px 15px 60px 15px;
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        transform: rotate(-3deg);
+        border: 1px solid #eee;
+        position: relative;
+        z-index: 2;
+      }
+
+      .polaroid-frame img {
+        width: 250px;
+        height: 250px;
+        object-fit: cover;
+      }
+
+      .polaroid-caption {
+        position: absolute;
+        bottom: 15px;
+        width: 100%;
+        text-align: center;
+        color: var(--hot-pink);
+        font-weight: bold;
+        font-size: 1.2rem;
+        left: 0;
+      }
+
+      /* Right Side (Text) */
+      .right-panel {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding: 40px;
+        position: relative;
+      }
+
+      /* The Vertical Divider */
+      .right-panel::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 20%;
+        height: 60%;
+        width: 2px;
+        background: #eee;
+      }
+
+      .header {
+        color: var(--hot-pink);
+        font-size: 2rem;
+        font-weight: 800;
+        margin-bottom: 20px;
+      }
+
+      .message {
+        color: #666;
+        line-height: 1.6;
+        font-size: 1.1rem;
+      }
+
+      #timer {
+        margin-top: 30px;
+        font-weight: bold;
+        color: var(--hot-pink);
+        font-family: monospace;
+        background: #fff0f5;
+        padding: 10px;
+        border-radius: 8px;
+        display: inline-block;
+      }
+
+      /* Decorations */
+      .heart {
+        position: absolute;
+        color: var(--soft-pink);
+        font-size: 24px;
+        animation: float 4s ease-in-out infinite;
+      }
+
+      .chibi {
+        position: absolute;
+        bottom: 20px;
+        left: 20px;
+        width: 120px;
+        z-index: 5;
+      }
+
+      @keyframes float {
+        0%,
+        100% {
+          transform: translateY(0);
+        }
+        50% {
+          transform: translateY(-15px);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <a href="#" class="back-btn" onclick="window.history.back()">❮ BACK</a>
+
+    <div class="card">
+      <div class="heart" style="top: 10%; left: 10%">❤</div>
+      <div class="heart" style="top: 50%; right: 5%">❤</div>
+      <div class="heart" style="bottom: 10%; left: 40%">❤</div>
+
+      <div class="left-panel">
+        <div class="polaroid-frame">
+          <img src="img/baby.jpg" alt="US" />
+          <div class="polaroid-caption">HAPPY BIRTHDAY</div>
+        </div>
+        <img src="img/cake.png" class="chibi" alt="Chibi" />
+      </div>
+
+      <div class="right-panel">
+        <div class="header">HAPPY BIRTHDAY BABY!</div>
+        <div class="message">
+          I love you more than words can say.<br />
+          Have the happiest birthday.
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

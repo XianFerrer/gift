@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Present For You</title>
+
+    <style>
+      body {
+        margin: 0;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        background: #fdf2f5;
+        font-family: Arial, sans-serif;
+        text-align: center;
+        overflow-x: hidden;
+      }
+
+      /* Floating animation */
+      @keyframes float {
+        0% {
+          transform: translateY(0px);
+        }
+        50% {
+          transform: translateY(-12px);
+        }
+        100% {
+          transform: translateY(0px);
+        }
+      }
+
+      h1 {
+        color: #ff4da6;
+        letter-spacing: 3px;
+        margin-bottom: 50px;
+        font-size: 28px;
+      }
+
+      /* Gift container */
+      .gift-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 60px;
+        flex-wrap: wrap; /* allows wrapping on smaller screens */
+      }
+
+      /* Gift cards */
+      .gift {
+        width: 220px;
+        height: 220px;
+        background: #fff;
+        border: 5px solid #ffd6e0;
+        border-radius: 20px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+        animation: float 3s ease-in-out infinite;
+        transition: all 0.3s ease;
+      }
+
+      .gift img {
+        width: 150px;
+      }
+
+      .gift:hover {
+        transform: scale(1.1);
+        box-shadow: 0 15px 30px rgba(255, 105, 135, 0.4);
+      }
+
+      .subtitle {
+        margin-top: 50px;
+        color: #ff6f91;
+        letter-spacing: 2px;
+      }
+
+      /* ========================= */
+      /* 📱 MOBILE RESPONSIVE MODE */
+      /* ========================= */
+      @media (max-width: 768px) {
+        h1 {
+          font-size: 22px;
+          margin-bottom: 30px;
+        }
+
+        .gift-container {
+          flex-direction: column;
+          gap: 30px;
+        }
+
+        .gift {
+          width: 180px;
+          height: 180px;
+        }
+
+        .gift img {
+          width: 120px;
+        }
+
+        .subtitle {
+          margin-top: 30px;
+          font-size: 12px;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <h1>PRESENT FOR YOU 💖</h1>
+
+    <div class="gift-container">
+      <div class="gift" onclick="openGift('sunflower.html')">
+        <img src="img/sunflower.png" alt="Sunflower" />
+      </div>
+
+      <div class="gift" onclick="openGift('cats.html')">
+        <img src="img/cats.png" alt="Cats" />
+      </div>
+
+      <div class="gift" onclick="openGift('letter.html')">
+        <img src="img/letter.png" alt="Letter" />
+      </div>
+    </div>
+
+    <div class="subtitle">CLICK ANY GIFT TO OPEN ✨</div>
+
+    <script>
+      function openGift(page) {
+        document.body.style.transition = "0.5s";
+        document.body.style.opacity = "0";
+        setTimeout(() => {
+          window.location.href = page;
+        }, 500);
+      }
+    </script>
+  </body>
+</html>

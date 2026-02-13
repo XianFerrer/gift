@@ -1,0 +1,220 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Anniversary Card</title>
+    <style>
+      :root {
+        --bg-color: #fce4ec;
+        --text-pink: #ff4081;
+        --player-bg: rgba(94, 75, 86, 0.85);
+      }
+
+      body {
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        background: linear-gradient(135deg, #fce4ec 0%, #ffebee 100%);
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        overflow: hidden;
+      }
+
+      .card-container {
+        width: 900px;
+        height: 500px;
+        display: flex;
+        position: relative;
+        padding: 40px;
+        border-radius: 20px;
+        box-sizing: border-box;
+        background: rgb(255, 255, 255);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      }
+
+      /* Left Side: Photo Elements */
+      .photo-section {
+        flex: 1;
+        position: relative;
+      }
+
+      .polaroid {
+        width: 300px;
+        height: 300px;
+        padding: 10px;
+        transform: rotate(-2deg);
+        position: relative;
+        z-index: 2;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        box-sizing: border-box;
+      }
+
+      .polaroid img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+      }
+
+      .chibi-character {
+        position: absolute;
+        bottom: -20px;
+        left: -25px;
+        width: 120px;
+        z-index: 4;
+      }
+
+      .back-btn {
+        position: absolute;
+        top: 20px;
+        left: 20px;
+        text-decoration: none;
+        color: var(--text-pink);
+        font-weight: bold;
+        font-family: "Courier New", Courier, monospace;
+        z-index: 10;
+        background: white;
+        padding: 8px 15px;
+        border-radius: 50px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+        transition: 0.3s;
+        opacity: 0;
+        transform: translateY(-20px);
+        /* This animation was missing its keyframes */
+        animation: fadeSlideIn 1s forwards 0.2s;
+      }
+
+      .back-btn:hover {
+        background: var(--text-pink);
+        color: white;
+      }
+
+      /* Right Side: Text Elements */
+      .text-section {
+        flex: 1.5;
+        text-align: center;
+        color: #ff4d94;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        padding-top: 20px;
+      }
+
+      .header {
+        font-size: 24px;
+        font-weight: bold;
+        margin-bottom: 20px;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+      }
+
+      .paragraph {
+        font-size: 18px;
+        margin-top: 10px;
+        line-height: 1.4;
+      }
+
+      #timer {
+        position: absolute;
+        bottom: 40px;
+        left: 50%;
+        transform: translateX(-50%);
+        color: #ff4d94;
+        font-weight: bold;
+        font-size: 18px;
+        white-space: nowrap;
+      }
+
+      /* Keyframes for the Back Button */
+      @keyframes fadeSlideIn {
+        0% {
+          opacity: 0;
+          transform: translateY(-20px);
+        }
+        100% {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      @keyframes float {
+        0%,
+        100% {
+          transform: translateY(0) rotate(-2deg);
+        }
+        50% {
+          transform: translateY(-10px) rotate(-1deg);
+        }
+      }
+
+      @keyframes float-chibi {
+        0%,
+        100% {
+          transform: translateY(0);
+        }
+        50% {
+          transform: translateY(-12px);
+        }
+      }
+
+      .polaroid {
+        animation: float 3s ease-in-out infinite;
+      }
+      .chibi-character {
+        animation: float-chibi 5s ease-in-out infinite;
+      }
+    </style>
+  </head>
+  <body>
+    <a href="#" class="back-btn" onclick="window.history.back()">❮ BACK</a>
+
+    <div class="card-container">
+      <div class="photo-section">
+        <div class="polaroid">
+          <img src="img/us.png" alt="Anniversary Photo" />
+        </div>
+        <img src="img/count.png" alt="Character" class="chibi-character" />
+      </div>
+
+      <div class="text-section">
+        <div class="header">HAPPY ANNIVERSARY BABY!</div>
+        <div class="paragraph">
+          Two years down, a lifetime to go. <br />
+          Thank you for being my favorite person!
+        </div>
+      </div>
+
+      <div id="timer">Loading time...</div>
+    </div>
+
+    <script>
+      const anniversaryDate = new Date(2024, 1, 15, 0, 0);
+
+      function updateTimer() {
+        const now = new Date();
+        const diff = now - anniversaryDate;
+
+        const years = Math.floor(diff / (1000 * 60 * 60 * 24 * 365));
+        const days = Math.floor(
+          (diff % (1000 * 60 * 60 * 24 * 365)) / (1000 * 60 * 60 * 24),
+        );
+        const hours = Math.floor(
+          (diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60),
+        );
+        const mins = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+        const secs = Math.floor((diff % (1000 * 60)) / 1000);
+
+        document.getElementById("timer").innerHTML =
+          `${years} years ${days} days ${hours.toString().padStart(2, "0")}:${mins.toString().padStart(2, "0")}:${secs.toString().padStart(2, "0")}`;
+      }
+
+      setInterval(updateTimer, 1000);
+      updateTimer();
+    </script>
+  </body>
+</html>
